@@ -16,7 +16,7 @@ class RecipesContainer extends PureComponent {
           <Title content="All Recipes" />
         </header>
 
-        <main>
+        <main className="container">
           { this.props.recipes.map(this.renderRecipe) }
         </main>
       </div>
