@@ -9,6 +9,7 @@ const recipes = [
     vegan: false,
     vegetarian: true,
     pescatarian: false,
+    photo: 'http://cd.sseu.re/spanish-omelette.jpg',
   },
   {
     title: 'Paella',
@@ -16,6 +17,7 @@ const recipes = [
     vegan: false,
     vegetarian: false,
     pescatarian: true,
+    photo: 'http://cd.sseu.re/mixed-seafood-paella.jpeg',
   },
   {
     title: 'Spare ribs',
@@ -23,6 +25,7 @@ const recipes = [
     vegan: false,
     vegetarian: false,
     pescatarian: false,
+    photo: 'http://cd.sseu.re/spare-bbq2.jpg',
   },
   {
     title: 'Agedashi Tofu',
@@ -30,6 +33,7 @@ const recipes = [
     vegan: true,
     vegetarian: true,
     pescatarian: false,
+    photo: 'http://cd.sseu.re/agedashi-tofu.jpg',
   },
 ]
 
