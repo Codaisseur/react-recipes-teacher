@@ -2,6 +2,7 @@
 import React, { PureComponent } from 'react'
 import Title from '../components/Title'
 import RecipeItem from './RecipeItem'
+import './RecipesContainer.sass'
 
 class RecipesContainer extends PureComponent {
   renderRecipe(recipe, index) {

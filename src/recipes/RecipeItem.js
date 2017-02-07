@@ -1,5 +1,6 @@
 // src/recipes/RecipeItem.js
 import React, { PureComponent } from 'react'
+import './RecipeItem.sass'
 
 class RecipeItem extends PureComponent {
   render() {
@@ -7,15 +8,19 @@ class RecipeItem extends PureComponent {
 
     return(
       <article className="recipe">
-        <h1>{ title }</h1>
-        <div>
-          <p>{ summary }</p>
-          <ul>
+        <header>
+          <h1>{ title }</h1>
+          <ul className="categories">
             { vegan && <li title="vegan">🌾</li> }
             { !vegan && vegetarian && <li title="vegetarian">🥕</li> }
             { !vegetarian && pescatarian && <li title="pescatarian">🐟</li> }
           </ul>
-        </div>
+        </header>
+        <main>
+          <p>{ summary }</p>
+        </main>
+        <footer>
+        </footer>
       </article>
     )
   }
