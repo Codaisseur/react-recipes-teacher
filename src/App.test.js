@@ -3,7 +3,7 @@ import { shallow } from 'enzyme'
 import chai, { expect } from 'chai'
 import chaiEnzyme from 'chai-enzyme'
 import App from './App'
-import Title from './components/Title'
+import RecipesContainer from './recipes/RecipesContainer'
 
 chai.use(chaiEnzyme())
 
@@ -15,6 +15,6 @@ describe('<App />', () => {
   })
 
   it('render a Title', () => {
-    expect(app).to.have.descendants(Title)
+    expect(app).to.have.descendants(RecipesContainer)
   })
 })
