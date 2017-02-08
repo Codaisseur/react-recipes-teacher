@@ -50,7 +50,7 @@ class App extends Component {
     super()
 
     this.state = {
-      recipes: recipes
+      recipes
     }
   }
 
