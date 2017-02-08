@@ -1,9 +1,11 @@
 // src/recipes/RecipeItem.js
 import React, { PureComponent, PropTypes } from 'react'
+import { connect } from 'react-redux'
 import LikeButton from '../components/LikeButton'
+import toggleLikeAction from '../actions/recipes/toggle-like'
 import './RecipeItem.sass'
 
-class RecipeItem extends PureComponent {
+export class RecipeItem extends PureComponent {
   static propTypes = {
     _id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
@@ -12,13 +14,13 @@ class RecipeItem extends PureComponent {
     vegan: PropTypes.bool,
     vegetarian: PropTypes.bool,
     pescatarian: PropTypes.bool,
-    onChange: PropTypes.func.isRequired,
+    toggleLikeAction: PropTypes.func.isRequired,
   }
 
   toggleLike() {
-    console.log('CLICK (RecipeItem)')
-    const { onChange, _id, liked } = this.props
-    onChange(_id, { liked: !liked })
+    const { _id } = this.props
+    console.log('CLICK (RecipeItem)', _id)
+    this.props.toggleLikeAction(_id)
   }
 
   render() {
@@ -46,4 +48,4 @@ class RecipeItem extends PureComponent {
   }
 }
 
-export default RecipeItem
+export default connect(null, { toggleLikeAction })(RecipeItem)

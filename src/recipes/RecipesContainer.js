@@ -7,20 +7,11 @@ import './RecipesContainer.sass'
 
 export class RecipesContainer extends PureComponent {
   static propTypes = {
-    updateRecipe: PropTypes.func.isRequired,
     recipes: PropTypes.array.isRequired,
   }
 
   renderRecipe(recipe, index) {
-    return <RecipeItem
-      key={ index }
-      { ...recipe }
-      onChange={ this.updateRecipe.bind(this) } />
-  }
-
-  updateRecipe(id, changes) {
-    console.log('CLICK (RecipesContainer)', id, changes)
-    this.props.updateRecipe(id, changes)
+    return <RecipeItem key={ index } { ...recipe } />
   }
 
   render() {

@@ -3,7 +3,7 @@ import React from 'react'
 import chai, { expect } from 'chai'
 import { shallow } from 'enzyme'
 import chaiEnzyme from 'chai-enzyme'
-import RecipeItem from './RecipeItem'
+import { RecipeItem } from './RecipeItem'
 
 chai.use(chaiEnzyme)
 
