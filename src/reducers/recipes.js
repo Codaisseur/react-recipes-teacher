@@ -1,3 +1,5 @@
+import { TOGGLE_LIKE } from '../actions/recipes/toggle-like'
+
 export const dummyData = [
   {
     _id: 'abcd123',
@@ -42,5 +44,17 @@ export const dummyData = [
 ]
 
 export default (state = dummyData, { type, payload } = {}) => {
-  return state
+  switch(type) {
+    case TOGGLE_LIKE :
+      return state.map((recipe) => {
+        if (recipe._id === payload) {
+          return Object.assign({}, recipe, { liked: !recipe.liked })
+        }
+
+        return recipe
+      })
+
+    default :
+      return state
+  }
 }
