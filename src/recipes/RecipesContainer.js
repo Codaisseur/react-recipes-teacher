@@ -1,10 +1,11 @@
 // src/recipes/RecipesContainer.js
 import React, { PureComponent, PropTypes } from 'react'
+import { connect } from 'react-redux'
 import Title from '../components/Title'
 import RecipeItem from './RecipeItem'
 import './RecipesContainer.sass'
 
-class RecipesContainer extends PureComponent {
+export class RecipesContainer extends PureComponent {
   static propTypes = {
     updateRecipe: PropTypes.func.isRequired,
     recipes: PropTypes.array.isRequired,
@@ -37,4 +38,6 @@ class RecipesContainer extends PureComponent {
   }
 }
 
-export default RecipesContainer
+const mapStateToProps = ({ recipes }) => ({ recipes })
+
+export default connect(mapStateToProps)(RecipesContainer)
