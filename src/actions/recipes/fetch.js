@@ -11,14 +11,17 @@ export default () => {
 }
 
 const fetchRecipes = (dispatch) => {
-  recipes.find()
-    .then((response) => {
-      dispatch({
-        type: FETCHED_RECIPES,
-        payload: response.data
-      })
+  recipes.find({
+    query: {
+      $limit: 25
+    }
+  }).then((response) => {
+    dispatch({
+      type: FETCHED_RECIPES,
+      payload: response.data
     })
-    .catch((error) => {
-      dispatch(loadError(error))
-    })
+  })
+  .catch((error) => {
+    dispatch(loadError(error))
+  })
 }
