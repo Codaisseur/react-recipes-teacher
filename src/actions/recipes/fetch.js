@@ -1,6 +1,6 @@
 // src/actions/recipes/fetch.js
 import API from '../../middleware/api'
-
+import loadError from '../load/error'
 export const FETCHED_RECIPES = 'FETCHED_RECIPES'
 
 const api = new API()
@@ -17,5 +17,8 @@ const fetchRecipes = (dispatch) => {
         type: FETCHED_RECIPES,
         payload: response.data
       })
+    })
+    .catch((error) => {
+      dispatch(loadError(error))
     })
 }
