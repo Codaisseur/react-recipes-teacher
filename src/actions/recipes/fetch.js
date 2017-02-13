@@ -14,23 +14,21 @@ export default () => {
 const fetchRecipes = (dispatch) => {
   dispatch(loading(true))
 
-  setTimeout(() => {
-    recipes.find({
-      query: {
-        $limit: 25
-      }
+  recipes.find({
+    query: {
+      $limit: 25
+    }
+  })
+  .then((response) => {
+    dispatch({
+      type: FETCHED_RECIPES,
+      payload: response.data
     })
-    .then((response) => {
-      dispatch({
-        type: FETCHED_RECIPES,
-        payload: response.data
-      })
-    })
-    .catch((error) => {
-      dispatch(loadError(error))
-    })
-    .then(() => {
-      dispatch(loading(false))
-    })
-  }, 10000)
+  })
+  .catch((error) => {
+    dispatch(loadError(error))
+  })
+  .then(() => {
+    dispatch(loading(false))
+  })
 }

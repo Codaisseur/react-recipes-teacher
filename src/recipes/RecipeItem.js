@@ -1,6 +1,7 @@
 // src/recipes/RecipeItem.js
 import React, { PureComponent, PropTypes } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router'
 import LikeButton from '../components/LikeButton'
 import toggleLikeAction from '../actions/recipes/toggle-like'
 import './RecipeItem.sass'
@@ -24,13 +25,15 @@ export class RecipeItem extends PureComponent {
   }
 
   render() {
-    const { title, summary, vegan, vegetarian, pescatarian, photo, liked } = this.props
+    const { _id, title, summary, vegan, vegetarian, pescatarian, photo, liked } = this.props
 
     return(
       <article className="recipe">
         <header>
           <div className="cover" style={{ backgroundImage: `url(${photo})` }} />
-          <h1>{ title }</h1>
+          <h1>
+            <Link to={`/recipes/${_id}`}>{ title }</Link>
+          </h1>
           <ul className="categories">
             { vegan && <li title="vegan">🌾</li> }
             { !vegan && vegetarian && <li title="vegetarian">🥕</li> }
