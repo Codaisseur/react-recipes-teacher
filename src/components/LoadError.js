@@ -3,10 +3,6 @@ import { connect } from 'react-redux'
 import './LoadError.sass'
 
 export class LoadError extends PureComponent {
-  static propTypes = {
-    error: PropTypes.isRequired,
-  }
-
   render() {
     const { error } = this.props
 

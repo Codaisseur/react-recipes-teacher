@@ -1,6 +1,7 @@
 // src/actions/recipes/fetch.js
 import API from '../../middleware/api'
 import loadError from '../load/error'
+import loading from '../loading'
 export const FETCHED_RECIPES = 'FETCHED_RECIPES'
 
 const api = new API()
@@ -11,17 +12,25 @@ export default () => {
 }
 
 const fetchRecipes = (dispatch) => {
-  recipes.find({
-    query: {
-      $limit: 25
-    }
-  }).then((response) => {
-    dispatch({
-      type: FETCHED_RECIPES,
-      payload: response.data
+  dispatch(loading(true))
+
+  setTimeout(() => {
+    recipes.find({
+      query: {
+        $limit: 25
+      }
     })
-  })
-  .catch((error) => {
-    dispatch(loadError(error))
-  })
+    .then((response) => {
+      dispatch({
+        type: FETCHED_RECIPES,
+        payload: response.data
+      })
+    })
+    .catch((error) => {
+      dispatch(loadError(error))
+    })
+    .then(() => {
+      dispatch(loading(false))
+    })
+  }, 10000)
 }
