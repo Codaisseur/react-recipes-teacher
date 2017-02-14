@@ -1,28 +1,25 @@
-// src/actions/recipes/fetch.js
+// src/actions/user/sign-in.js
 import API from '../../middleware/api'
 import loadError from '../load/error'
 import loadSuccess from '../load/success'
 import loading from '../loading'
-export const FETCHED_RECIPES = 'FETCHED_RECIPES'
+import { history } from '../../store'
+export const USER_SIGNED_IN = 'USER_SIGNED_IN'
 
 const api = new API()
-const recipes = api.service('recipes')
 
-export default () => {
+export default (user) => {
   return (dispatch) => {
     dispatch(loading(true))
 
-    recipes.find({
-      query: {
-        $limit: 25
-      }
-    })
+    api.authenticate(user)
     .then((response) => {
       dispatch(loadSuccess())
       dispatch({
-        type: FETCHED_RECIPES,
+        type: USER_SIGNED_IN,
         payload: response.data
       })
+      history.push('/')
     })
     .catch((error) => {
       dispatch(loadError(error))
