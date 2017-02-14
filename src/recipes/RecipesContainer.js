@@ -2,6 +2,7 @@
 import React, { PureComponent, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import fetchRecipes from '../actions/recipes/fetch'
+import subscribeToRecipesService from '../actions/recipes/subscribe'
 import Title from '../components/Title'
 import RecipeItem from './RecipeItem'
 import './RecipesContainer.sass'
@@ -10,10 +11,12 @@ export class RecipesContainer extends PureComponent {
   static propTypes = {
     recipes: PropTypes.array.isRequired,
     fetchRecipes: PropTypes.func.isRequired,
+    subscribeToRecipesService: PropTypes.func.isRequired,
   }
 
   componentDidMount() {
     this.props.fetchRecipes()
+    this.props.subscribeToRecipesService()
   }
 
   renderRecipe(recipe, index) {
@@ -37,4 +40,7 @@ export class RecipesContainer extends PureComponent {
 
 const mapStateToProps = ({ recipes }) => ({ recipes })
 
-export default connect(mapStateToProps, { fetchRecipes })(RecipesContainer)
+export default connect(mapStateToProps, {
+  fetchRecipes,
+  subscribeToRecipesService
+})(RecipesContainer)

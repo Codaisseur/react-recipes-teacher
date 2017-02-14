@@ -24,6 +24,21 @@ class LikeButton extends PureComponent {
     this.props.onChange()
   }
 
+  likeStatus() {
+    const { liked, likes } = this.props
+    const likesOtherThanYours = (likes || 0) - 1
+
+    if (liked && likesOtherThanYours > 0) {
+      return `You and ${likesOtherThanYours} others like this`
+    }
+
+    if (liked) return 'You like this'
+
+    if (likes > 0) return `${likes} others like this`
+
+    return null
+  }
+
   render() {
     const { liked } = this.props
     return (
@@ -34,7 +49,7 @@ class LikeButton extends PureComponent {
             <img className="heart" src={ liked ? HeartRed : HeartGrey } />
           </span>
         </button>
-        <span className="likes">{ liked ? 'You like this' : null }</span>
+        <span className="likes">{this.likeStatus()}</span>
       </p>
     )
   }

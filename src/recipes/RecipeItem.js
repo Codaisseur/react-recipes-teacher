@@ -19,13 +19,13 @@ export class RecipeItem extends PureComponent {
   }
 
   toggleLike() {
-    const { _id } = this.props
+    const { _id, likedBy, currentUser } = this.props
     console.log('CLICK (RecipeItem)', _id)
-    this.props.toggleLikeAction(_id)
+    this.props.toggleLikeAction({ _id, likedBy }, currentUser)
   }
 
   render() {
-    const { _id, title, summary, vegan, vegetarian, pescatarian, photo, liked } = this.props
+    const { _id, title, summary, vegan, vegetarian, pescatarian, photo, liked, likedBy } = this.props
 
     return(
       <article className="recipe">
@@ -44,11 +44,21 @@ export class RecipeItem extends PureComponent {
           <p>{ summary }</p>
         </main>
         <footer>
-          <LikeButton liked={ liked } onChange={ this.toggleLike.bind(this) } />
+          <LikeButton
+            liked={ liked }
+            likes={likedBy.length}
+            onChange={ this.toggleLike.bind(this) } />
         </footer>
       </article>
     )
   }
 }
 
-export default connect(null, { toggleLikeAction })(RecipeItem)
+const mapStateToProps = ({ currentUser }, { likedBy }) => {
+  return {
+    currentUser,
+    liked: likedBy.filter((like) => (like === (currentUser && currentUser._id))).length > 0
+  }
+}
+
+export default connect(mapStateToProps, { toggleLikeAction })(RecipeItem)
