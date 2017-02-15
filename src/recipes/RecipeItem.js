@@ -20,6 +20,8 @@ export class RecipeItem extends PureComponent {
 
   toggleLike() {
     const { _id, likedBy, currentUser } = this.props
+    if (!currentUser) return
+
     console.log('CLICK (RecipeItem)', _id)
     this.props.toggleLikeAction({ _id, likedBy }, currentUser)
   }
