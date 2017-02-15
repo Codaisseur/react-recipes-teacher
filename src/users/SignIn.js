@@ -22,8 +22,8 @@ const buttonStyle = {
 export class SignIn extends PureComponent {
   submitForm(event) {
     const user = {
-      email: this.refs.email.value,
-      password: this.refs.password.value
+      email: this.refs.email.getValue(),
+      password: this.refs.password.getValue()
     }
     this.props.signIn(user)
 
